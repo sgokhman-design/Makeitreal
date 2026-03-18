@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Make It Real — Company Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:#faf9fb;}
+
+:root{
+  --pink:#e8457a;
+  --pink-soft:#fdf0f4;
+  --pink-border:#f5c8d8;
+  --dark:#22182e;
+  --text:#2d2040;
+  --muted:#9990a8;
+  --border:#ede8f2;
+  --bg:#faf9fb;
+}
+
+/* TOP NAV */
+.topbar{background:var(--dark);display:flex;align-items:center;padding:0 1.5rem;height:44px;gap:1rem;}
+.topbar-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:0.01em;}
+.topbar-name span{color:var(--pink);}
+.topbar-links{display:flex;gap:1.5rem;margin-left:auto;}
+.topbar-links a{color:rgba(255,255,255,0.5);font-size:11.5px;text-decoration:none;font-weight:700;}
+.topbar-links a:hover{color:#fff;}
+
+/* HERO */
+.hero{padding:1.6rem 1.5rem;background:var(--dark);position:relative;overflow:hidden;}
+.hero-ring{position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:40px solid rgba(232,69,122,0.08);pointer-events:none;}
+.hero-inner{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.hero-label{font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink);margin-bottom:7px;}
+.hero h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.2;}
+.hero-sub{font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:600;}
+.search-box{display:flex;align-items:center;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:0 14px;height:40px;gap:8px;min-width:250px;}
+.search-box input{background:transparent;border:none;outline:none;color:#fff;font-size:12.5px;font-family:inherit;flex:1;font-weight:600;}
+.search-box input::placeholder{color:rgba(255,255,255,0.3);}
+
+/* QUICK STRIP */
+.quick-strip{display:flex;gap:7px;padding:0.85rem 1.5rem;background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;}
+.qpill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:8px;font-size:11.5px;font-weight:700;border:1px solid var(--border);background:#fff;color:var(--text);cursor:pointer;font-family:inherit;white-space:nowrap;transition:border-color 0.12s,background 0.12s;text-decoration:none;}
+.qpill:hover{border-color:var(--pink-border);background:var(--pink-soft);}
+
+/* BODY LAYOUT */
+.body{padding:1.2rem 1.5rem;display:grid;grid-template-columns:1fr 240px;gap:1.1rem;}
+@media(max-width:768px){.body{grid-template-columns:1fr;}}
+.section-label{font-size:10.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem;}
+
+/* DEPT GRID */
+.dept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:1.1rem;}
+@media(max-width:600px){.dept-grid{grid-template-columns:1fr;}}
+.dept-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:border-color 0.15s,transform 0.15s;}
+.dept-card:hover{border-color:var(--pink-border);transform:translateY(-1px);}
+
+.dept-head{padding:13px 14px 10px;display:flex;align-items:center;gap:10px;}
+.dept-icon{width:36px;height:36px;border-radius:9px;background:var(--pink-soft);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.dept-title{font-size:13px;font-weight:800;color:var(--text);}
+.dept-sub{font-size:11px;color:var(--muted);font-weight:600;margin-top:1px;}
+
+.dept-links{border-top:1px solid var(--border);}
+.dlink{display:flex;align-items:center;justify-content:space-between;padding:7px 14px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);transition:background 0.1s,color 0.1s;}
+.dlink:last-child{border-bottom:none;}
+.dlink:hover{background:var(--pink-soft);color:var(--pink);}
+.dlink-main{font-weight:800;color:var(--text);}
+.dlink-main:hover{color:var(--pink);}
+.darrow{font-size:11px;color:#d8d0e0;}
+
+/* ALL SITES GRID */
+.all-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+@media(max-width:500px){.all-grid{grid-template-columns:repeat(2,1fr);}}
+.agrid-link{background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-weight:700;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:6px;transition:border-color 0.12s,background 0.12s;}
+.agrid-link:hover{border-color:var(--pink-border);background:var(--pink-soft);color:var(--pink);}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:9px;}
+.scard{background:#fff;border-radius:12px;border:1px solid var(--border);padding:14px;}
+.stitle{font-size:11px;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+
+.team-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;}
+.team-row:last-child{border-bottom:none;}
+.team-name{font-weight:700;color:var(--text);}
+.team-chips{display:flex;gap:5px;}
+.tchip{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:var(--pink-soft);color:var(--pink);}
+.tchip-gray{background:#f4f2f7;color:var(--muted);}
+
+.news-item{margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid var(--border);}
+.news-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.ntag{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:5px;margin-bottom:4px;background:var(--pink-soft);color:var(--pink);}
+.nhead{font-size:12px;font-weight:700;color:var(--text);line-height:1.4;}
+.ndate{font-size:10.5px;color:var(--muted);margin-top:2px;font-weight:600;}
+
+.event-row{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start;}
+.event-row:last-child{margin-bottom:0;}
+.ebox{width:36px;height:36px;border-radius:8px;background:var(--pink-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.emon{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--pink);}
+.eday{font-size:15px;font-weight:800;line-height:1;color:var(--pink);}
+.ename{font-size:12px;font-weight:700;color:var(--text);}
+.edet{font-size:11px;color:var(--muted);font-weight:600;}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topbar">
+  <span class="topbar-name">Make It <span>Real</span></span>
+  <div class="topbar-links">
+    <a href="https://makeitrealplay.sharepoint.com">Home</a>
+    <a href="https://makeitrealplay.sharepoint.com/sites/MIRDocumentHub">Docs Hub</a>
+    <a href="https://makeitrealplay.sharepoint.com/sites/MasterListMIR">Master List</a>
+    <a href="https://makeitrealplay.sharepoint.com/sites/IT">IT</a>
+    <a href="https://makeitrealplay.sharepoint.com/sites/ITHelpdesk">Help Desk</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ring"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Company Hub</div>
+      <h1>Hey, welcome back 👋</h1>
+      <div class="hero-sub">Find your team, sites, and resources — all in one spot</div>
+    </div>
+    <div class="search-box">
+      <span style="color:rgba(255,255,255,0.3);font-size:14px;">⌕</span>
+      <input type="text" placeholder="Search sites, people, files…" />
+    </div>
+  </div>
+</div>
+
+<!-- QUICK STRIP -->
+<div class="quick-strip">
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/MasterListMIR">📊 Master List</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/ITHelpdesk">🛠 IT Help Desk</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/Calendar">📅 Calendar</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/Procurement">📦 Procurement</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/MIRDocumentHub">📄 Doc Hub</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/Sourcing">🌍 Sourcing</a>
+  <a class="qpill" href="https://makeitrealplay.sharepoint.com/sites/mir.design">🎨 MIR Design</a>
+</div>
+
+<!-- MAIN BODY -->
+<div class="body">
+  <div>
+    <div class="section-label">Departments</div>
+    <div class="dept-grid">
+
+      <!-- HR -->
+      <div class="dept-card">
+        <div class="dept-head">
+          <div class="dept-icon">👥</div>
+          <div>
+            <div class="dept-title">Human Resources</div>
+            <div class="dept-sub">83 members · 1 channel</div>
+          </div>
+        </div>
+        <div class="dept-links">
+          <a class="dlink dlink-main" href="https://makeitrealplay.sharepoint.com/sites/HR">HR Main Site <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/HR">Employee Handbook <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/HR">Holiday Calendar <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/HR">Benefits & Payroll <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/Calendar">Company Calendar <span class="darrow">›</span></a>
+        </div>
+      </div>
+
+      <!-- Finance -->
+      <div class="dept-card">
+        <div class="dept-head">
+          <div class="dept-icon">💰</div>
+          <div>
+            <div class="dept-title">Finance</div>
+            <div class="dept-sub">11 members · 3 private channels</div>
+          </div>
+        </div>
+        <div class="dept-links">
+          <a class="dlink dlink-main" href="https://makeitrealplay.sharepoint.com/sites/Finance">Finance Main Site <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/FinanceAP">Accounts Payable <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/FinanceReporting">Finance Reporting <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/financesuppliers">Suppliers <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/Procurement">Procurement <span class="darrow">›</span></a>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="dept-card">
+        <div class="dept-head">
+          <div class="dept-icon">✨</div>
+          <div>
+            <div class="dept-title">Marketing</div>
+            <div class="dept-sub">4 members · Public</div>
+          </div>
+        </div>
+        <div class="dept-links">
+          <a class="dlink dlink-main" href="https://makeitrealplay.sharepoint.com/sites/GlobalSalesandMarketing">Global Sales & Marketing <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/MarketingAssetPortal">Marketing Asset Portal <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/GlobalSalesAssetSharing">Global Sales Assets <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/MIRPriceList">MIR Price List <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/MIRGraphicUploads">MIR Graphic Uploads <span class="darrow">›</span></a>
+        </div>
+      </div>
+
+      <!-- Operations -->
+      <div class="dept-card">
+        <div class="dept-head">
+          <div class="dept-icon">⚙️</div>
+          <div>
+            <div class="dept-title">Operations</div>
+            <div class="dept-sub">49+ members · 7 private channels</div>
+          </div>
+        </div>
+        <div class="dept-links">
+          <a class="dlink dlink-main" href="https://makeitrealplay.sharepoint.com/sites/USOps">Customer Operations <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/intlops">International Ops <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/manufacturing">Manufacturing <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/Sourcing">Sourcing <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/PO_Planning">PO Planning <span class="darrow">›</span></a>
+          <a class="dlink" href="https://makeitrealplay.sharepoint.com/sites/QAregulatory">QA Regulatory <span class="darrow">›</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label">All Sites</div>
+    <div class="all-grid">
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/mir.design">🎨 MIR Design</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/graphics">🖼 Graphics</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/QAregulatory">📋 QA Regulatory</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/QASuppliers">🔍 QA Suppliers</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/CustomerFeedbackResolution">💬 Customer Feedback</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/WorkingFilesGraphics">💾 Working Files</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/Dev3C4G">🛠 3C4G Design</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/DataExchange">🔄 Data Exchange</a>
+      <a class="agrid-link" href="https://makeitrealplay.sharepoint.com/sites/Report1">📊 Reports</a>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="scard">
+      <div class="stitle">Teams at a Glance</div>
+      <div class="team-row"><span class="team-name">Make It Real</span><div class="team-chips"><span class="tchip">94 members</span><span class="tchip tchip-gray">Public</span></div></div>
+      <div class="team-row"><span class="team-name">HR</span><span class="tchip">83 members</span></div>
+      <div class="team-row"><span class="team-name">IT Support</span><div class="team-chips"><span class="tchip">85 members</span><span class="tchip tchip-gray">Public</span></div></div>
+      <div class="team-row"><span class="team-name">Customer Ops</span><span class="tchip">49 members</span></div>
+      <div class="team-row"><span class="team-name">MIR Design</span><span class="tchip">53 members</span></div>
+      <div class="team-row"><span class="team-name">Manufacturing</span><span class="tchip">20 members</span></div>
+      <div class="team-row"><span class="team-name">Finance</span><span class="tchip">11 members</span></div>
+      <div class="team-row"><span class="team-name">Sourcing</span><span class="tchip">11 members</span></div>
+    </div>
+
+    <div class="scard">
+      <div class="stitle">Company News</div>
+      <div class="news-item">
+        <div class="ntag">Product</div>
+        <div class="nhead">Q2 product line launches across 90+ countries</div>
+        <div class="ndate">Mar 15, 2026</div>
+      </div>
+      <div class="news-item">
+        <div class="ntag">Finance</div>
+        <div class="nhead">FY2025 annual report available in Finance Reporting</div>
+        <div class="ndate">Mar 10, 2026</div>
+      </div>
+      <div class="news-item">
+        <div class="ntag">IT</div>
+        <div class="nhead">New IT Helpdesk is live — submit tickets now</div>
+        <div class="ndate">Mar 5, 2026</div>
+      </div>
+    </div>
+
+    <div class="scard">
+      <div class="stitle">Upcoming Events</div>
+      <div class="event-row">
+        <div class="ebox"><div class="emon">Mar</div><div class="eday">24</div></div>
+        <div><div class="ename">All-Hands Meeting</div><div class="edet">10:00 AM · Zoom</div></div>
+      </div>
+      <div class="event-row">
+        <div class="ebox"><div class="emon">Apr</div><div class="eday">1</div></div>
+        <div><div class="ename">Q1 Finance Close</div><div class="edet">Finance Team</div></div>
+      </div>
+      <div class="event-row">
+        <div class="ebox"><div class="emon">Apr</div><div class="eday">7</div></div>
+        <div><div class="ename">NY Toy Fair Prep</div><div class="edet">Marketing · Global Sales</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
